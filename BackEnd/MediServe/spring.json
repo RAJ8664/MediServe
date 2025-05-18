@@ -1,6 +1,21 @@
 {
-    "userName" : "UNKNOWN ROY",
-    "password" : "123456789",
-    "role" : "USER",
-    "imageUrl" : "https://cdn-icons-png.flaticon.com/513/149/14.png"
-}
+    "medicineName": "Amoxicillin",
+    "medicineDescription": "Antibiotic for bacterial infections.",
+    "medicineImageUrl": [
+      "https://example.com/images/amoxicillin-1.jpg",
+      "https://example.com/images/amoxicillin-2.jpg"
+    ],
+    "medicinePrice": 120.5,
+    "medicineStock": 700,
+    "medicineRating": 4.1,
+    "medicineQuantity": [
+      "Strip of 10 tablets",
+      "Bottle of 100 tablets"
+    ],
+    "medicineManufacturerName": "Wellness Labs",
+    "expiryDate": "2026-04-10",
+    "category": ["Antibiotic"],
+    "batchNumber": "AMO-3512",
+    "medicineTags": ["infection", "bacteria"],
+    "usageInstruction": "Complete full course as directed by physician."
+  }
