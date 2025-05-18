@@ -1,21 +1,21 @@
 {
-    "medicineName": "Amoxicillin",
-    "medicineDescription": "Antibiotic for bacterial infections.",
-    "medicineImageUrl": [
-      "https://example.com/images/amoxicillin-1.jpg",
-      "https://example.com/images/amoxicillin-2.jpg"
-    ],
-    "medicinePrice": 120.5,
-    "medicineStock": 700,
-    "medicineRating": 4.1,
-    "medicineQuantity": [
-      "Strip of 10 tablets",
-      "Bottle of 100 tablets"
-    ],
-    "medicineManufacturerName": "Wellness Labs",
-    "expiryDate": "2026-04-10",
-    "category": ["Antibiotic"],
-    "batchNumber": "AMO-3512",
-    "medicineTags": ["infection", "bacteria"],
-    "usageInstruction": "Complete full course as directed by physician."
-  }
+  "medicineName": "Ciprofloxacin",
+  "medicineDescription": "Broad-spectrum antibiotic.",
+  "medicineImageUrl": [
+    "https://example.com/images/ciprofloxacin-1.jpg",
+    "https://example.com/images/ciprofloxacin-2.jpg"
+  ],
+  "medicinePrice": 132.3,
+  "medicineStock": 320,
+  "medicineRating": 4.4,
+  "medicineQuantity": [
+    "Bottle of 100 tablets",
+    "Pack of 5 syrups"
+  ],
+  "medicineManufacturerName": "MediCare Inc.",
+  "expiryDate": "2025-09-08",
+  "category": ["Antibiotic"],
+  "batchNumber": "CIP-2390",
+  "medicineTags": ["infection", "bacteria"],
+  "usageInstruction": "Do not exceed prescribed dosage."
+}

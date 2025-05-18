@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.roy.mediserve.MediServe.Model.Medicine;
@@ -76,17 +77,7 @@ public class MedicineController {
         return new ResponseEntity<>(medicine, HttpStatus.OK);
     }
 
-    /* Update medicineImageUrl by medicineId */
-    @RequestMapping(method = RequestMethod.PUT, path = "/medicine/medicineImageUrl/{medicineId}")
-    public ResponseEntity<Medicine> updateMedicineImageUrlById(@PathVariable String medicineId, @RequestBody Medicine medicine) {
-        Medicine current_medicine = medicineRepository.findById(medicineId).orElse(null);
-        if (current_medicine == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        current_medicine.setMedicineImageUrl(medicine.getMedicineImageUrl());
-        medicineRepository.save(current_medicine);
-        return new ResponseEntity<>(medicine, HttpStatus.OK);
-    }
+    
 
     /* Update medicinePrice by medicineId */
     @RequestMapping(method = RequestMethod.PUT, path = "/medicine/medicinePrice/{medicineId}")
@@ -206,5 +197,29 @@ public class MedicineController {
         current_medicine.setUsageInstruction(medicine.getUsageInstruction());
         medicineRepository.save(current_medicine);
         return new ResponseEntity<>(medicine, HttpStatus.OK);
+    }
+
+    /* To Remove medicineImageUrl based on medicineId and index of imageUrl */
+    @RequestMapping(method = RequestMethod.PUT, path = "/medicine/medicineImageUrl/{medicineId}/{index}")
+    public ResponseEntity<Medicine> removeMedicineImageUrlByIdAndIndex(@PathVariable String medicineId, @PathVariable int index) {
+        Medicine current_medicine = medicineRepository.findById(medicineId).orElse(null);
+        if (current_medicine == null || current_medicine.getMedicineImageUrl().size() <= index) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        current_medicine.getMedicineImageUrl().remove(index);
+        medicineRepository.save(current_medicine);
+        return new ResponseEntity<>(current_medicine, HttpStatus.OK);
+    }
+    
+    /* Update medicineImageUrl by medicineId (add a new imageUrl to the list) */
+    @RequestMapping(method = RequestMethod.POST, path = "/medicine/medicineImageUrl/{medicineId}")
+    public ResponseEntity<Medicine> updateMedicineImageUrlById(@PathVariable String medicineId, @RequestParam String imageUrl) {
+        Medicine current_medicine = medicineRepository.findById(medicineId).orElse(null);
+        if (current_medicine == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        current_medicine.getMedicineImageUrl().add(imageUrl);
+        medicineRepository.save(current_medicine);
+        return new ResponseEntity<>(current_medicine, HttpStatus.OK);
     }
 }
