@@ -1,2 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+:root {
+  --primary-color: #FFFFFF;
+  --secondary-color: #0000FF;
+  --background-color: #93C47D;
+  --accent-color: #FFB74D;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.btn-accent {
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.btn-accent:hover {
+  opacity: 0.9;
+}
+
+.text-accent {
+  color: var(--accent-color);
+}
+
+.bg-accent {
+  background-color: var(--accent-color);
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+
+.bg-theme {
+  background-color: var(--background-color);
+}
