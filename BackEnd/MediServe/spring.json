@@ -1,6 +1,21 @@
 {
-    "userName" : "UNKNOWN ROY",
-    "password" : "123456789",
-    "role" : "USER",
-    "imageUrl" : "https://cdn-icons-png.flaticon.com/513/149/14.png"
+  "medicineName": "Ciprofloxacin",
+  "medicineDescription": "Broad-spectrum antibiotic.",
+  "medicineImageUrl": [
+    "https://example.com/images/ciprofloxacin-1.jpg",
+    "https://example.com/images/ciprofloxacin-2.jpg"
+  ],
+  "medicinePrice": 132.3,
+  "medicineStock": 320,
+  "medicineRating": 4.4,
+  "medicineQuantity": [
+    "Bottle of 100 tablets",
+    "Pack of 5 syrups"
+  ],
+  "medicineManufacturerName": "MediCare Inc.",
+  "expiryDate": "2025-09-08",
+  "category": ["Antibiotic"],
+  "batchNumber": "CIP-2390",
+  "medicineTags": ["infection", "bacteria"],
+  "usageInstruction": "Do not exceed prescribed dosage."
 }

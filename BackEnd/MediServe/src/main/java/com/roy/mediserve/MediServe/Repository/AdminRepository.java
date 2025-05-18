@@ -3,9 +3,9 @@ package com.roy.mediserve.MediServe.Repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.roy.mediserve.MediServe.Model.User;
+import com.roy.mediserve.MediServe.Model.Admin;
 
 @Repository
-public interface UserRepository extends MongoRepository<User, String>{
+public interface AdminRepository extends MongoRepository<Admin, String> {
     
 }

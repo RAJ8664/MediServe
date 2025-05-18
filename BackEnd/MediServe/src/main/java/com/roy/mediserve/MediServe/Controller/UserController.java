@@ -29,7 +29,7 @@ public class UserController {
 
     /* Get User by ID */    
     @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+    public ResponseEntity<User> getUserById(@PathVariable String userId) {
         User user = userRepository.findById(userId).orElse(null);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -41,9 +41,38 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
+    /* Get userAddress by userId */
+    @RequestMapping(method = RequestMethod.GET, path = "/users/userAddress/{userId}")
+    public ResponseEntity<String> getUserAddressById(@PathVariable String userId) {
+        if (!userRepository.existsById(userId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        User user = userRepository.findById(userId).orElse(null);
+        return new ResponseEntity<>(user.getUserAddress(), HttpStatus.OK);
+    }        
+
+    /* Get userImageUrl by userId */
+    @RequestMapping(method = RequestMethod.GET, path = "/users/userImageUrl/{userId}")
+    public ResponseEntity<String> getUserImageUrlById(@PathVariable String userId) {
+        if (!userRepository.existsById(userId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        User user = userRepository.findById(userId).orElse(null);
+        return new ResponseEntity<>(user.getUserImageUrl(), HttpStatus.OK);
+    }        
+    /* Get userName by userId */
+    @RequestMapping(method = RequestMethod.GET, path = "/users/userName/{userId}")
+    public ResponseEntity<String> getUserNameById(@PathVariable String userId) {
+        if (!userRepository.existsById(userId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        User user = userRepository.findById(userId).orElse(null);
+        return new ResponseEntity<>(user.getUserName(), HttpStatus.OK);
+    }   
+    
     /* Delete a User by userId */
     @RequestMapping(method = RequestMethod.DELETE, path = "/users/{userId}")
-    public ResponseEntity<User> deleteUser(@PathVariable Long userId) {
+    public ResponseEntity<User> deleteUser(@PathVariable String userId) {
         User user = userRepository.findById(userId).orElse(null);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -54,63 +83,61 @@ public class UserController {
 
     /* Update a User by userId */
     @RequestMapping(method = RequestMethod.PUT, path = "/users/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable String userId, @RequestBody User user) {
         User existingUser = userRepository.findById(userId).orElse(null);
         if (existingUser == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         existingUser.setUserName(user.getUserName());
-        existingUser.setPassword(user.getPassword());
-        existingUser.setRole(user.getRole());
-        existingUser.setImageUrl(user.getImageUrl());
+        existingUser.setUserPassword(user.getUserPassword());
+        existingUser.setUserImageUrl(user.getUserImageUrl());
         User updatedUser = userRepository.save(existingUser);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     /* Update userPassword by userId */
     @RequestMapping(method = RequestMethod.PUT, path = "/users/password/{userId}")
-    public ResponseEntity<User> updateUserPassword(@PathVariable Long userId, @RequestBody User user) {
+    public ResponseEntity<User> updateUserPassword(@PathVariable String userId, @RequestBody User user) {
         User existingUser = userRepository.findById(userId).orElse(null);
         if (existingUser == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        existingUser.setPassword(user.getPassword());
+        existingUser.setUserPassword(user.getUserPassword());
         User updatedUser = userRepository.save(existingUser);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
-    /* Update userImage by userId */
+    /* Update useImage by userId */
     @RequestMapping(method = RequestMethod.PUT, path = "/users/imageUrl/{userId}")
-    public ResponseEntity<User> updateUserImage(@PathVariable Long userId, @RequestBody User user) {
+    public ResponseEntity<User> updateUserImage(@PathVariable String userId, @RequestBody User user) {
         User existingUser = userRepository.findById(userId).orElse(null);
         if (existingUser == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        existingUser.setImageUrl(user.getImageUrl());
-        User updatedUser = userRepository.save(existingUser);
-        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-    }
-
-    /* Update userRole by userId */
-    @RequestMapping(method = RequestMethod.PUT, path = "/users/role/{userId}")
-    public ResponseEntity<User> updateUserRole(@PathVariable Long userId, @RequestBody User user) {
-        User existingUser = userRepository.findById(userId).orElse(null);
-        if (existingUser == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        existingUser.setRole(user.getRole());
+        existingUser.setUserImageUrl(user.getUserImageUrl());
         User updatedUser = userRepository.save(existingUser);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     /* Update userName by userId */
     @RequestMapping(method = RequestMethod.PUT, path = "/users/userName/{userId}")
-    public ResponseEntity<User> updateUserName(@PathVariable Long userId, @RequestBody User user) {
+    public ResponseEntity<User> updateUserName(@PathVariable String userId, @RequestBody User user) {
         User existingUser = userRepository.findById(userId).orElse(null);
         if (existingUser == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         existingUser.setUserName(user.getUserName());
+        User updatedUser = userRepository.save(existingUser);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
+    /* Update userAddress by userId */
+    @RequestMapping(method = RequestMethod.PUT, path = "/users/userAddress/{userId}")
+    public ResponseEntity<User> updateUserAddress(@PathVariable String userId, @RequestBody User user) {
+        User existingUser = userRepository.findById(userId).orElse(null);
+        if (existingUser == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        existingUser.setUserAddress(user.getUserAddress());
         User updatedUser = userRepository.save(existingUser);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
