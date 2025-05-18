@@ -1,0 +1,65 @@
+/* Navbar container */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #93C47D;
+}
+
+/* Logo hover effect */
+.logo-container:hover {
+  opacity: 0.9;
+
+}
+
+/* Search input focus styles */
+input:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Cart badge animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.relative span {
+  animation: pulse 2s infinite;
+  background-color: #FFB74D;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .flex-1 {
+    margin: 0 0.5rem;
+  }
+}
+
+/* Button hover effects */
+a[href="/signup"] {
+  background-color: #FFB74D;
+  transform: translateY(-1px);
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+a[href="/signup"]:hover {
+  opacity: 0.9;
+}
+
+/* User icon */
+.rounded-full svg {
+  color: #0000FF;
+}
+
+/* Custom theme colors */
+:root {
+  --primary-color: #FFFFFF;
+  --secondary-color: #0000FF;
+  --background-color: #93C47D;
+  --accent-color: #FFB74D;
+}
