@@ -1,4 +1,4 @@
-package com.roy.medi_serve.com.MediServe;
+package com.roy.mediserve.MediServe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

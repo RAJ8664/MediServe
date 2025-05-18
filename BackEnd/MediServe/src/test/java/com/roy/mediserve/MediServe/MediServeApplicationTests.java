@@ -1,4 +1,4 @@
-package com.roy.medi_serve.com.MediServe;
+package com.roy.mediserve.MediServe;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
