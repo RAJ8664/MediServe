@@ -1,0 +1,99 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold text-emerald-700 mb-8">Banner Image Manager</h1>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Main Banner Section -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">Main Hero Banner</h2>
+      
+      <!-- Current Image Preview -->
+      <div class="mb-6">
+        <p class="text-sm text-gray-600 mb-2">Current Image:</p>
+        <img *ngIf="mainBannerConfig" [src]="mainBannerConfig.imageUrl" 
+          [alt]="mainBannerConfig.imageAlt" class="rounded-lg w-full h-40 object-cover">
+      </div>
+      
+      <!-- Image URL Form -->
+      <div class="mb-4">
+        <label for="mainBannerUrl" class="block text-sm font-medium text-gray-700 mb-1">
+          New Cloudinary Image URL:
+        </label>
+        <input type="text" id="mainBannerUrl" name="mainBannerUrl" 
+          [(ngModel)]="mainBannerUrl"
+          class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500">
+      </div>
+      
+      <!-- Update/Reset Buttons -->
+      <div class="flex gap-4 mb-4">
+        <button (click)="updateMainBanner()"
+          class="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700">
+          Update Banner
+        </button>
+        <button (click)="resetMainBanner()"
+          class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
+          Reset to Default
+        </button>
+      </div>
+      
+      <!-- Status Message -->
+      <div *ngIf="mainBannerUpdateStatus" 
+        class="p-3 bg-emerald-100 text-emerald-700 rounded-md">
+        {{ mainBannerUpdateStatus }}
+      </div>
+    </div>
+    
+    <!-- Special Offer Banner Section -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">Special Offer Banner</h2>
+      
+      <!-- Current Image Preview -->
+      <div class="mb-6">
+        <p class="text-sm text-gray-600 mb-2">Current Image:</p>
+        <img *ngIf="offerBannerConfig" [src]="offerBannerConfig.imageUrl" 
+          [alt]="offerBannerConfig.imageAlt" class="rounded-lg w-full h-40 object-cover">
+      </div>
+      
+      <!-- Image URL Form -->
+      <div class="mb-4">
+        <label for="offerBannerUrl" class="block text-sm font-medium text-gray-700 mb-1">
+          New Cloudinary Image URL:
+        </label>
+        <input type="text" id="offerBannerUrl" name="offerBannerUrl" 
+          [(ngModel)]="offerBannerUrl"
+          class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500">
+      </div>
+      
+      <!-- Update/Reset Buttons -->
+      <div class="flex gap-4 mb-4">
+        <button (click)="updateOfferBanner()"
+          class="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700">
+          Update Banner
+        </button>
+        <button (click)="resetOfferBanner()"
+          class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
+          Reset to Default
+        </button>
+      </div>
+      
+      <!-- Status Message -->
+      <div *ngIf="offerBannerUpdateStatus" 
+        class="p-3 bg-emerald-100 text-emerald-700 rounded-md">
+        {{ offerBannerUpdateStatus }}
+      </div>
+    </div>
+  </div>
+  
+  <!-- Cloudinary Instructions -->
+  <div class="mt-8 bg-blue-50 p-6 rounded-lg">
+    <h3 class="text-lg font-semibold text-blue-700 mb-2">How to Use Cloudinary Images</h3>
+    <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+      <li>Upload your image to your Cloudinary account</li>
+      <li>Copy the secure URL of the image from your Cloudinary dashboard</li>
+      <li>Paste the URL in the input field above</li>
+      <li>Click "Update Banner" to apply the new image</li>
+    </ol>
+    <p class="mt-4 text-sm text-gray-600">
+      <strong>Note:</strong> For optimal performance, it's recommended to use optimized images with dimensions of at least 800x600 pixels.
+    </p>
+  </div>
+</div>

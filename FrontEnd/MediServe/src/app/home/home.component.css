@@ -1,0 +1,120 @@
+/* Global styles for the home page */
+section {
+  overflow: hidden;
+}
+
+/* Hero section styles */
+.hero-text {
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Feature cards hover effects */
+.bg-emerald-50 {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bg-emerald-50:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Category cards animation */
+.hover\:-translate-y-1:hover {
+  transition: all 0.3s ease;
+}
+
+/* Product card styles */
+.group {
+  transition: transform 0.3s ease-in-out;
+}
+
+.group:hover {
+  transform: translateY(-5px);
+}
+
+.group img {
+  transition: transform 0.5s ease;
+}
+
+/* Star ratings */
+.text-amber-400 {
+  color: #FFB74D;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #93C47D;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #75a35e;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Newsletter form focus effect */
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 183, 77, 0.5);
+}
+
+/* Button hover animations */
+a[href="/products"], button[type="submit"] {
+  transition: all 0.3s ease;
+}
+
+a[href="/products"]:hover, button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Add some animation to testimonials */
+.testimonial {
+  transition: all 0.3s ease;
+}
+
+.testimonial:hover {
+  transform: scale(1.02);
+}
+
+/* Material icons alignment fix if needed */
+.material-icons {
+  vertical-align: middle;
+}
+
+/* Add a subtle animation to the app downloads section */
+.bg-emerald-50 img {
+  transition: transform 0.5s ease;
+}
+
+.bg-emerald-50 img:hover {
+  transform: perspective(800px) rotateY(5deg);
+}

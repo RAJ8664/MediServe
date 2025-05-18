@@ -1,0 +1,23 @@
+<section [class]="offerConfig.backgroundColor + ' py-12 text-white'">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center justify-between">
+      <div class="mb-6 md:mb-0 md:w-7/12">
+        <h2 class="text-3xl font-bold mb-4">{{ offerConfig.title }}</h2>
+        <p class="text-white/80 text-lg mb-6">
+          {{ offerConfig.description }}
+          <span class="font-bold text-amber-400">{{ offerConfig.highlightedText }}</span>
+        </p>
+        <a [routerLink]="offerConfig.buttonLink" class="bg-white text-emerald-700 hover:bg-amber-400 hover:text-emerald-900 font-semibold px-6 py-3 rounded-xl inline-block transition-colors shadow-lg">
+          {{ offerConfig.buttonText }}
+        </a>
+      </div>
+      <div class="md:w-4/12">
+        <img 
+          [src]="offerConfig.imageUrl" 
+          [alt]="offerConfig.imageAlt" 
+          class="rounded-lg shadow-xl w-full"
+        >
+      </div>
+    </div>
+  </div>
+</section>
