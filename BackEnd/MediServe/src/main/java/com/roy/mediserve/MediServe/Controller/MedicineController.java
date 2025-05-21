@@ -20,7 +20,6 @@ public class MedicineController {
     @Autowired
     private MedicineRepository medicineRepository;
 
-
     /* Get all Mecicines */
     @RequestMapping(method = RequestMethod.GET, path = "/medicine")
     public ResponseEntity<List<Medicine>> getAllMedicine() {
@@ -76,8 +75,6 @@ public class MedicineController {
         medicineRepository.save(current_medicine);
         return new ResponseEntity<>(medicine, HttpStatus.OK);
     }
-
-    
 
     /* Update medicinePrice by medicineId */
     @RequestMapping(method = RequestMethod.PUT, path = "/medicine/medicinePrice/{medicineId}")
@@ -210,7 +207,7 @@ public class MedicineController {
         medicineRepository.save(current_medicine);
         return new ResponseEntity<>(current_medicine, HttpStatus.OK);
     }
-    
+
     /* Update medicineImageUrl by medicineId (add a new imageUrl to the list) */
     @RequestMapping(method = RequestMethod.POST, path = "/medicine/medicineImageUrl/{medicineId}")
     public ResponseEntity<Medicine> updateMedicineImageUrlById(@PathVariable String medicineId, @RequestParam String imageUrl) {
