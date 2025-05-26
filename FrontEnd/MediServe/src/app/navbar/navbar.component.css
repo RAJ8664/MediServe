@@ -1,20 +1,164 @@
-/* Navbar container */
+/* Navbar container with glass morphism effect */
 nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: #93C47D;
+  background: linear-gradient(to right, rgba(5, 150, 105, 0.95), rgba(16, 185, 129, 0.95));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Logo hover effect */
+/* Subtle highlight effect on top of navbar */
+nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, 
+    rgba(255, 255, 255, 0), 
+    rgba(255, 255, 255, 0.5), 
+    rgba(255, 255, 255, 0));
+  z-index: 1;
+}
+
+/* Logo container with hover animation */
+.logo-container {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .logo-container:hover {
-  opacity: 0.9;
-
+  transform: scale(1.05);
 }
 
-/* Search input focus styles */
-input:focus {
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+/* Logo shine effect on hover */
+.logo-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+  transform: rotate(45deg);
+  transition: all 0.8s ease;
+  opacity: 0;
+  z-index: 2;
+}
+
+.logo-container:hover::before {
+  opacity: 1;
+  transform: rotate(45deg) translate(0%, 0%);
+}
+
+/* Logo image animation */
+.logo-container img {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.logo-container:hover img {
+  transform: scale(1.08) rotate(2deg);
+}
+
+/* Search input animation and effects */
+.search-container {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.search-container input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-container input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.25), 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Search button animation */
+.search-btn {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.search-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.search-btn:hover {
+  transform: scale(1.15);
+}
+
+.search-btn:hover::after {
+  transform: translate(-50%, -50%) scale(1.5);
+  opacity: 1;
+}
+
+/* Location indicator animation */
+.location-indicator {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.location-indicator:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.location-indicator svg {
+  transition: all 0.3s ease;
+}
+
+.location-indicator:hover svg {
+  transform: scale(1.1);
+  color: #fbbf24;
+}
+
+/* Cart button animation */
+.cart-button {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.cart-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.cart-button:hover {
+  transform: translateY(-3px);
+}
+
+.cart-button:hover::before {
+  transform: scale(2);
+  opacity: 1;
 }
 
 /* Cart badge animation */
@@ -24,12 +168,97 @@ input:focus {
   100% { transform: scale(1); }
 }
 
-.relative span {
+.cart-badge {
   animation: pulse 2s infinite;
-  background-color: #FFB74D;
+  box-shadow: 0 0 0 rgba(251, 191, 36, 0.4);
+  transition: all 0.3s ease;
 }
 
-/* Responsive adjustments */
+.cart-button:hover .cart-badge {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+}
+
+/* User authentication buttons */
+.auth-buttons a {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-buttons a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.auth-buttons a:hover {
+  transform: translateY(-3px);
+}
+
+.auth-buttons a:hover::after {
+  transform: translateX(100%);
+}
+
+/* Sign up button special effects */
+.signup-btn {
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #fbbf24 0%, #f59e0b 50%, #fbbf24 100%);
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.signup-btn:hover {
+  background-position: right center;
+  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.5);
+  transform: translateY(-5px) !important;
+}
+
+/* User profile icon animation */
+.user-profile {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.user-profile::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.user-profile:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.user-profile:hover::after {
+  transform: scale(2);
+  opacity: 1;
+}
+
+.user-profile:hover svg {
+  transform: scale(1.2);
+}
+
+.user-profile svg {
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments with animations */
 @media (max-width: 768px) {
   .container {
     padding: 0 1rem;
@@ -38,28 +267,166 @@ input:focus {
   .flex-1 {
     margin: 0 0.5rem;
   }
+  
+  .auth-buttons a:hover {
+    transform: translateY(-2px);
+  }
+  
+  .signup-btn:hover {
+    transform: translateY(-3px) !important;
+  }
 }
 
-/* Button hover effects */
-a[href="/signup"] {
-  background-color: #FFB74D;
-  transform: translateY(-1px);
-  transition: transform 0.2s, opacity 0.2s;
+/* Floating animation for various elements */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
 }
 
-a[href="/signup"]:hover {
-  opacity: 0.9;
-}
-
-/* User icon */
-.rounded-full svg {
-  color: #0000FF;
-}
-
-/* Custom theme colors */
+/* Custom theme colors with enhanced gradients */
 :root {
   --primary-color: #FFFFFF;
   --secondary-color: #0000FF;
-  --background-color: #93C47D;
+  --background-gradient: linear-gradient(to right, #059669, #10b981);
   --accent-color: #FFB74D;
+}
+
+/* Navbar scroll animation */
+.navbar-scrolled {
+  background: rgba(5, 150, 105, 0.98);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtle shimmer effect across navbar */
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 8s infinite linear;
+  pointer-events: none;
+}
+
+/* Search animation when typing */
+.search-container.searching input {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2);
+}
+
+.search-container.searching .search-btn {
+  animation: pulse 0.5s ease-in-out;
+}
+
+/* Cart badge update animation */
+@keyframes updating {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); background-color: #f59e0b; }
+  100% { transform: scale(1); }
+}
+
+.cart-badge.updating {
+  animation: updating 0.5s ease-in-out;
+}
+
+/* Location text animation */
+.location-text {
+  position: relative;
+  display: inline-block;
+}
+
+.location-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #fbbf24;
+  transition: width 0.3s ease;
+}
+
+.location-indicator:hover .location-text::after {
+  width: 100%;
+}
+
+/* Add loading animation for search */
+@keyframes loading {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.search-container.searching::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  margin-top: -8px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fbbf24;
+  border-radius: 50%;
+  animation: loading 0.6s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.search-container.searching .search-btn {
+  opacity: 0;
+}
+
+.search-container.searching::after {
+  opacity: 1;
+}
+
+/* Enhanced navbar scroll transition */
+.navbar-scrolled {
+  transform: translateY(-2px);
+  animation: slideDown 0.3s forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Add micro-interactions for focus states */
+input:focus ~ .search-btn {
+  animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Add hover effect for the entire navbar */
+nav:hover .shimmer-effect {
+  opacity: 0.5;
 }

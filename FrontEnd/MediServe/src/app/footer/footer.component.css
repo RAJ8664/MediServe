@@ -1,0 +1,278 @@
+/* Footer styles */
+footer {
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background gradient animation */
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(5, 150, 105, 0) 50%, rgba(5, 150, 105, 0.05) 100%);
+  z-index: 0;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Particles effect - dots in background */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 15s infinite ease-in-out;
+}
+
+/* Social media icons hover effect */
+footer .social-icons a {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+footer .social-icons a::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+footer .social-icons a:hover {
+  transform: translateY(-5px) rotate(5deg);
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+footer .social-icons a:hover::after {
+  transform: translate(-50%, -50%) scale(1.5);
+  opacity: 1;
+}
+
+/* Newsletter input focus effect */
+footer .newsletter-input {
+  transition: all 0.3s ease;
+  background-size: 200% auto;
+}
+
+footer .newsletter-input:focus {
+  border-color: rgba(251, 191, 36, 0.8);
+  box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Subscribe button hover animation */
+footer .subscribe-btn {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #fbbf24 0%, #f59e0b 50%, #fbbf24 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+footer .subscribe-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+footer .subscribe-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  background-position: right center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+footer .subscribe-btn:hover::after {
+  transform: translateX(100%);
+}
+
+/* Links hover effect */
+footer .footer-link {
+  position: relative;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+footer .footer-link:hover {
+  transform: translateX(8px);
+  color: #fbbf24 !important;
+}
+
+footer .footer-link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fbbf24;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+footer .footer-link:hover::before {
+  width: 100%;
+}
+
+/* Logo hover effect */
+footer .logo-container {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+footer .logo-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+  transform: rotate(45deg);
+  transition: all 0.8s ease;
+  opacity: 0;
+}
+
+footer .logo-container:hover::before {
+  opacity: 1;
+  transform: rotate(45deg) translate(0%, 0%);
+}
+
+footer .logo-container img {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+footer .logo-container:hover img {
+  transform: scale(1.08);
+}
+
+/* Section title animations */
+footer .section-title {
+  position: relative;
+  display: inline-block;
+}
+
+footer .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(to right, #fbbf24, rgba(251, 191, 36, 0.3));
+  transition: width 0.4s ease;
+}
+
+footer .section-title:hover::after {
+  width: 100%;
+}
+
+/* Newsletter form animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+footer .newsletter-container {
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Bottom footer links */
+footer .bottom-link {
+  position: relative;
+  overflow: hidden;
+}
+
+footer .bottom-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+footer .bottom-link:hover::after {
+  transform: translateX(0);
+}
+
+/* Responsive animations */
+@media (max-width: 768px) {
+  footer .section-title::after {
+    width: 30px;
+  }
+  
+  footer .social-icons a:hover {
+    transform: translateY(-3px) rotate(3deg);
+  }
+}
+
+/* Floating animation for various elements */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Apply animations to specific elements */
+footer .newsletter-title {
+  animation: pulse 4s infinite ease-in-out;
+}
+
+/* Wave effect at the top of footer */
+.footer-wave {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23065f46'/%3E%3C/svg%3E");
+  background-size: cover;
+  z-index: 1;
+}
