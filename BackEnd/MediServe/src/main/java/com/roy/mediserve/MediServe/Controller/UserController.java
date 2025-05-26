@@ -16,7 +16,6 @@ import com.roy.mediserve.MediServe.Repository.UserRepository;
 
 @RestController
 public class UserController {
-    
     @Autowired
     private UserRepository userRepository;
 
@@ -59,7 +58,7 @@ public class UserController {
         }
         User user = userRepository.findById(userId).orElse(null);
         return new ResponseEntity<>(user.getUserImageUrl(), HttpStatus.OK);
-    }        
+    }
     /* Get userName by userId */
     @RequestMapping(method = RequestMethod.GET, path = "/users/userName/{userId}")
     public ResponseEntity<String> getUserNameById(@PathVariable String userId) {
@@ -68,7 +67,7 @@ public class UserController {
         }
         User user = userRepository.findById(userId).orElse(null);
         return new ResponseEntity<>(user.getUserName(), HttpStatus.OK);
-    }   
+    } 
     
     /* Delete a User by userId */
     @RequestMapping(method = RequestMethod.DELETE, path = "/users/{userId}")
@@ -130,6 +129,7 @@ public class UserController {
         User updatedUser = userRepository.save(existingUser);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
+
     /* Update userAddress by userId */
     @RequestMapping(method = RequestMethod.PUT, path = "/users/userAddress/{userId}")
     public ResponseEntity<User> updateUserAddress(@PathVariable String userId, @RequestBody User user) {

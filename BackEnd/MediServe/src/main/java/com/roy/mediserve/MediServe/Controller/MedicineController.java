@@ -1,26 +1,35 @@
 package com.roy.mediserve.MediServe.Controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.roy.mediserve.MediServe.Model.Medicine;
 import com.roy.mediserve.MediServe.Repository.MedicineRepository;
+import com.roy.mediserve.MediServe.Services.MedicineService;
 
 @RestController
 public class MedicineController {
+   
     @Autowired
     private MedicineRepository medicineRepository;
 
-    /* Get all Mecicines */
+    @Autowired
+    private MedicineService medicineService;
+
+    /* Get all Medicines */
     @RequestMapping(method = RequestMethod.GET, path = "/medicine")
     public ResponseEntity<List<Medicine>> getAllMedicine() {
         List<Medicine> medicines = medicineRepository.findAll();
@@ -218,5 +227,11 @@ public class MedicineController {
         current_medicine.getMedicineImageUrl().add(imageUrl);
         medicineRepository.save(current_medicine);
         return new ResponseEntity<>(current_medicine, HttpStatus.OK);
+    }
+
+    /* Method Implementation for uploading medicine data using csv file --> multiple data at the same time. */
+    @PostMapping(value = "/medicine/upload", consumes = {"multipart/form-data"})
+    public ResponseEntity<Integer> uploadMedicineData(@RequestPart("file") MultipartFile file) throws IOException {
+        return ResponseEntity.ok(medicineService.uploadMedicineData(file));
     }
 }

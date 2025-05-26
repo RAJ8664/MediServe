@@ -7,5 +7,4 @@ import com.roy.mediserve.MediServe.Model.Medicine;
 
 @Repository
 public interface MedicineRepository extends MongoRepository<Medicine, String> {
-    
 }

@@ -10,6 +10,7 @@ public class Admin {
     private String adminName;
     private String adminPassword;
     private String adminImageUrl;
+    private String adminEmail;
 
     public Admin() {}
     public Admin(String adminId, String adminName, String adminPassword, String adminImageUrl) {
@@ -28,9 +29,17 @@ public class Admin {
     public void setAdminPassword(String adminPassword) { this.adminPassword = adminPassword; }
     public String getAdminImageUrl() { return adminImageUrl; }
     public void setAdminImageUrl(String adminImageUrl) { this.adminImageUrl = adminImageUrl; }
-    
+    public String getAdminEmail() { return adminEmail; }
+    public void setAdminEmail(String adminEmail) { this.adminEmail = adminEmail; }
+
     @Override
     public String toString() {
-        return "Admin [adminId=" + adminId + ", adminName=" + adminName + ", adminPassword=" + adminPassword + ", adminImageUrl=" + adminImageUrl + "]";
-    } 
+        return "Admin{" +
+                "adminId='" + adminId + '\'' +
+                ", adminName='" + adminName + '\'' +
+                ", adminPassword='" + adminPassword + '\'' +
+                ", adminImageUrl='" + adminImageUrl + '\'' +
+                ", adminEmail='" + adminEmail + '\'' +
+                '}';
+    }
 }

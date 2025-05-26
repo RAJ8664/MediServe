@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /* Use case --> http://localhost:8080/swagger-ui/index.html#/ 
- * This is the configuration class for Swagger API documentation. */
+ * configuration class for Swagger API documentation. */
 
 @Configuration
 public class Swagger {

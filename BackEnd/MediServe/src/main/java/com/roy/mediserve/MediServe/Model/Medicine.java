@@ -1,9 +1,13 @@
 package com.roy.mediserve.MediServe.Model;
 
 import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Builder;
+
+@Builder
 @Document(collection = "medicine")
 public class Medicine {
     @Id
@@ -21,7 +25,6 @@ public class Medicine {
     private String batchNumber;
     private List<String> medicineTags;
     private String usageInstruction;
-
     public Medicine() {}
     public Medicine(String medicineId, String medicineName, String medicineDescription, List<String> medicineImageUrl,
             double medicinePrice, Long medicineStock, double medicineRating, List<String> medicineQuantity,

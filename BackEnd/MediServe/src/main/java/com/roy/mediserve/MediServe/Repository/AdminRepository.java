@@ -7,5 +7,5 @@ import com.roy.mediserve.MediServe.Model.Admin;
 
 @Repository
 public interface AdminRepository extends MongoRepository<Admin, String> {
-    
+	Admin findByAdminEmail(String adminEmail);    
 }

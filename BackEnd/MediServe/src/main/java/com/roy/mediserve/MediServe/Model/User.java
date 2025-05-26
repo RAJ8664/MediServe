@@ -11,14 +11,16 @@ public class User {
     private String userPassword;
     private String userImageUrl;
     private String userAddress;
+    private String userEmail;
 
     public User() {}
-    public User(String userId, String userName, String userPassword, String userImageUrl, String userAddress) {
+    public User(String userId, String userName, String userPassword, String userImageUrl, String userAddress, String userEmail) {
         this.userId = userId;
         this.userName = userName;
         this.userPassword = userPassword;
         this.userImageUrl = userImageUrl;
         this.userAddress = userAddress;
+        this.userEmail = userEmail;
     }
 
     /* Getters  and Setters */
@@ -32,9 +34,13 @@ public class User {
     public void setUserImageUrl(String userImageUrl) { this.userImageUrl = userImageUrl; }
     public String getUserAddress() { return userAddress; }
     public void setUserAddress(String userAddress) { this.userAddress = userAddress; }
-   
+    public String getUserEmail() { return userEmail; }
+    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
+
     @Override
     public String toString() {
-        return "User [userId=" + userId + ", userName=" + userName + ", userPassword=" + userPassword + ", userImageUrl=" + userImageUrl + ", userAddress=" + userAddress + "]";
+        return "User [userId=" + userId + ", userName=" + userName + ", userPassword=" + userPassword
+                + ", userImageUrl=" + userImageUrl + ", userAddress=" + userAddress + ", userEmail=" + userEmail
+                + "]";
     }
 }
