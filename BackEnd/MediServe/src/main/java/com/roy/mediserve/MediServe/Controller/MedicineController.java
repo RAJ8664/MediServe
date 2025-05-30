@@ -22,7 +22,7 @@ import com.roy.mediserve.MediServe.Services.MedicineService;
 
 @RestController
 public class MedicineController {
-   
+
     @Autowired
     private MedicineRepository medicineRepository;
 
