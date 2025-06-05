@@ -34,6 +34,11 @@ export class BannerManagerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Reload configurations to ensure we have the latest data
+    if (this.isBrowser) {
+      this.bannerService.reloadConfigurations();
+    }
+    
     // Get current configurations
     this.bannerService.mainBanner$.subscribe(config => {
       this.mainBannerConfig = config;
@@ -61,6 +66,17 @@ export class BannerManagerComponent implements OnInit {
     }
     
     this.bannerService.updateMainBannerImage(this.mainBannerUrl);
+    
+    // Force a save to localStorage
+    try {
+      localStorage.setItem('mediServe_mainBanner', JSON.stringify({
+        ...this.mainBannerConfig,
+        imageUrl: this.mainBannerUrl
+      }));
+    } catch (e) {
+      console.error('Error saving to localStorage', e);
+    }
+    
     this.mainBannerUpdateStatus = 'Main banner image updated successfully!';
     
     // Clear status message after 3 seconds
@@ -86,6 +102,17 @@ export class BannerManagerComponent implements OnInit {
     }
     
     this.bannerService.updateOfferBannerImage(this.offerBannerUrl);
+    
+    // Force a save to localStorage
+    try {
+      localStorage.setItem('mediServe_offerBanner', JSON.stringify({
+        ...this.offerBannerConfig,
+        imageUrl: this.offerBannerUrl
+      }));
+    } catch (e) {
+      console.error('Error saving to localStorage', e);
+    }
+    
     this.offerBannerUpdateStatus = 'Offer banner image updated successfully!';
     
     // Clear status message after 3 seconds
@@ -131,6 +158,23 @@ export class BannerManagerComponent implements OnInit {
       
       // Clear status message after 3 seconds
       setTimeout(() => {
+        this.offerBannerUpdateStatus = '';
+      }, 3000);
+    }
+  }
+
+  /**
+   * Reload configurations from localStorage
+   */
+  reloadConfigurations(): void {
+    if (this.isBrowser) {
+      this.bannerService.reloadConfigurations();
+      this.mainBannerUpdateStatus = 'Configurations reloaded from localStorage';
+      this.offerBannerUpdateStatus = 'Configurations reloaded from localStorage';
+      
+      // Clear status messages after 3 seconds
+      setTimeout(() => {
+        this.mainBannerUpdateStatus = '';
         this.offerBannerUpdateStatus = '';
       }, 3000);
     }
