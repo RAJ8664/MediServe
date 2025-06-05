@@ -1,0 +1,179 @@
+<div class="signup-container">
+  <div class="signup-card">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="assets/Logo.png" alt="MediServe Logo" class="logo">
+    </div>
+    
+    <!-- Title -->
+    <h1 class="title">Create Account</h1>
+    <p class="subtitle">Join MediServe for better healthcare services</p>
+    
+    <!-- Signup Form -->
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="form" novalidate>
+      <!-- Full Name field -->
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <div class="input-container" [class.error]="isControlInvalid('fullName')">
+          <i class="input-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </i>
+          <input 
+            type="text" 
+            id="fullName" 
+            formControlName="fullName" 
+            placeholder="John Doe"
+            autocomplete="name"
+          >
+        </div>
+        <div class="error-message" *ngIf="isControlInvalid('fullName')">
+          {{ getFullNameErrorMessage() }}
+        </div>
+      </div>
+      
+      <!-- Email field -->
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-container" [class.error]="isControlInvalid('email')">
+          <i class="input-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </i>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email" 
+            placeholder="your@email.com"
+            autocomplete="email"
+          >
+        </div>
+        <div class="error-message" *ngIf="isControlInvalid('email')">
+          {{ getEmailErrorMessage() }}
+        </div>
+      </div>
+      
+      <!-- Phone field -->
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <div class="input-container" [class.error]="isControlInvalid('phone')">
+          <i class="input-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </i>
+          <input 
+            type="tel" 
+            id="phone" 
+            formControlName="phone" 
+            placeholder="9876543210"
+            autocomplete="tel"
+          >
+        </div>
+        <div class="error-message" *ngIf="isControlInvalid('phone')">
+          {{ getPhoneErrorMessage() }}
+        </div>
+      </div>
+      
+      <!-- Password field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-container" [class.error]="isControlInvalid('password')">
+          <i class="input-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </i>
+          <input 
+            [type]="isPasswordVisible ? 'text' : 'password'" 
+            id="password" 
+            formControlName="password" 
+            placeholder="••••••••"
+            autocomplete="new-password"
+          >
+          <button 
+            type="button" 
+            class="toggle-password" 
+            (click)="togglePasswordVisibility()"
+            tabindex="-1"
+          >
+            <svg *ngIf="!isPasswordVisible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            <svg *ngIf="isPasswordVisible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+          </button>
+        </div>
+        <div class="error-message" *ngIf="isControlInvalid('password')">
+          {{ getPasswordErrorMessage() }}
+        </div>
+      </div>
+      
+      <!-- Confirm Password field -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="input-container" [class.error]="isControlInvalid('confirmPassword')">
+          <i class="input-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </i>
+          <input 
+            [type]="isConfirmPasswordVisible ? 'text' : 'password'" 
+            id="confirmPassword" 
+            formControlName="confirmPassword" 
+            placeholder="••••••••"
+            autocomplete="new-password"
+          >
+          <button 
+            type="button" 
+            class="toggle-password" 
+            (click)="toggleConfirmPasswordVisibility()"
+            tabindex="-1"
+          >
+            <svg *ngIf="!isConfirmPasswordVisible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            <svg *ngIf="isConfirmPasswordVisible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+          </button>
+        </div>
+        <div class="error-message" *ngIf="isControlInvalid('confirmPassword')">
+          {{ getConfirmPasswordErrorMessage() }}
+        </div>
+      </div>
+      
+      <!-- Terms and Conditions -->
+      <div class="terms-container">
+        <label class="checkbox-container">
+          <input type="checkbox" [(ngModel)]="agreeToTerms" [ngModelOptions]="{standalone: true}">
+          <span class="checkmark"></span>
+          <span>I agree to the <a href="/terms" class="terms-link">Terms & Conditions</a> and <a href="/privacy" class="terms-link">Privacy Policy</a></span>
+        </label>
+      </div>
+      
+      <!-- Signup error message -->
+      <div class="alert-error" *ngIf="signUpError">
+        {{ signUpError }}
+      </div>
+      
+      <!-- Submit button -->
+      <button 
+        type="submit" 
+        class="submit-button" 
+        [disabled]="loading || !agreeToTerms"
+      >
+        <span *ngIf="!loading">Create Account</span>
+        <span *ngIf="loading" class="spinner"></span>
+      </button>
+    </form>
+    
+    <!-- Divider -->
+    <div class="divider">
+      <span>or</span>
+    </div>
+    
+    <!-- Social signup buttons -->
+    <div class="social-buttons">
+      <button type="button" class="social-button google">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/></svg>
+        <span>Google</span>
+      </button>
+      <button type="button" class="social-button facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+        <span>Facebook</span>
+      </button>
+    </div>
+    
+    <!-- Login link -->
+    <p class="login-text">
+      Already have an account? <a href="/login">Sign In</a>
+    </p>
+  </div>
+</div>
