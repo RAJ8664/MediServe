@@ -27,6 +27,11 @@ export class SpecialOfferBannerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // Ensure we have the latest configuration
+    if (this.isBrowser) {
+      this.bannerService.reloadConfigurations();
+    }
+    
     // Subscribe to offer banner configuration from the service
     this.subscription.add(
       this.bannerService.offerBanner$.subscribe(config => {

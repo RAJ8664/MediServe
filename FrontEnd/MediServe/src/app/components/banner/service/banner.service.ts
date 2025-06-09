@@ -1,4 +1,4 @@
-import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject, APP_INITIALIZER } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -67,12 +67,21 @@ export class BannerConfigService {
   mainBanner$: Observable<BannerConfig> = this.mainBannerSubject.asObservable();
   offerBanner$: Observable<OfferBannerConfig> = this.offerBannerSubject.asObservable();
 
+  // Flag to track if initialization has been done
+  private initialized = false;
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     
     // Load saved configurations from localStorage if available and in browser
     if (this.isBrowser) {
-      this.loadSavedConfigurations();
+      // Use setTimeout to ensure this runs after Angular is fully initialized
+      setTimeout(() => {
+        if (!this.initialized) {
+          this.loadSavedConfigurations();
+          this.initialized = true;
+        }
+      }, 0);
     }
   }
 
@@ -171,37 +180,53 @@ export class BannerConfigService {
   }
 
   /**
+   * Force reload configurations from localStorage
+   * Can be called manually if needed
+   */
+  reloadConfigurations(): void {
+    if (this.isBrowser) {
+      this.loadSavedConfigurations();
+    }
+  }
+
+  /**
    * Load saved configurations from localStorage
    * Only called in browser environment
    */
   private loadSavedConfigurations(): void {
     if (!this.isBrowser) return;
     
-    const savedMainBanner = localStorage.getItem('mediServe_mainBanner');
-    const savedOfferBanner = localStorage.getItem('mediServe_offerBanner');
+    try {
+      const savedMainBanner = localStorage.getItem('mediServe_mainBanner');
+      const savedOfferBanner = localStorage.getItem('mediServe_offerBanner');
 
-    if (savedMainBanner) {
-      try {
-        const config = JSON.parse(savedMainBanner);
-        this.mainBannerSubject.next({
-          ...this.defaultMainBanner,
-          ...config
-        });
-      } catch (e) {
-        console.error('Error loading main banner config from localStorage', e);
+      if (savedMainBanner) {
+        try {
+          const config = JSON.parse(savedMainBanner);
+          this.mainBannerSubject.next({
+            ...this.defaultMainBanner,
+            ...config
+          });
+          console.log('Loaded main banner config from localStorage');
+        } catch (e) {
+          console.error('Error loading main banner config from localStorage', e);
+        }
       }
-    }
 
-    if (savedOfferBanner) {
-      try {
-        const config = JSON.parse(savedOfferBanner);
-        this.offerBannerSubject.next({
-          ...this.defaultOfferBanner,
-          ...config
-        });
-      } catch (e) {
-        console.error('Error loading offer banner config from localStorage', e);
+      if (savedOfferBanner) {
+        try {
+          const config = JSON.parse(savedOfferBanner);
+          this.offerBannerSubject.next({
+            ...this.defaultOfferBanner,
+            ...config
+          });
+          console.log('Loaded offer banner config from localStorage');
+        } catch (e) {
+          console.error('Error loading offer banner config from localStorage', e);
+        }
       }
+    } catch (e) {
+      console.error('Error accessing localStorage', e);
     }
   }
 
@@ -212,8 +237,13 @@ export class BannerConfigService {
   private saveMainBannerConfig(): void {
     if (!this.isBrowser) return;
     
-    const config = this.mainBannerSubject.getValue();
-    localStorage.setItem('mediServe_mainBanner', JSON.stringify(config));
+    try {
+      const config = this.mainBannerSubject.getValue();
+      localStorage.setItem('mediServe_mainBanner', JSON.stringify(config));
+      console.log('Saved main banner config to localStorage');
+    } catch (e) {
+      console.error('Error saving main banner config to localStorage', e);
+    }
   }
 
   /**
@@ -223,7 +253,12 @@ export class BannerConfigService {
   private saveOfferBannerConfig(): void {
     if (!this.isBrowser) return;
     
-    const config = this.offerBannerSubject.getValue();
-    localStorage.setItem('mediServe_offerBanner', JSON.stringify(config));
+    try {
+      const config = this.offerBannerSubject.getValue();
+      localStorage.setItem('mediServe_offerBanner', JSON.stringify(config));
+      console.log('Saved offer banner config to localStorage');
+    } catch (e) {
+      console.error('Error saving offer banner config to localStorage', e);
+    }
   }
 }
